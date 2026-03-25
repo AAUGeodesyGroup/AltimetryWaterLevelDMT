@@ -20,8 +20,7 @@ These scripts were made to download, select, map and plot river altimetry data f
 - File "Download_Hydroweb_data.py" contains script to download the stations from the Hydroweb website
 - File "Extract_CLMS_data.m" contains selection of CLMS stations 
 - File "Extract_Dahiti_data.m" contains selection of Dahiti stations 
-- File "Extract_Hydroweb_data.m" contains selection of Hydroweb stations 
-- File "Material handling guides.pdf" contains guides about how to access, extract and use data from websites of processing centres with the given scripts. 
+- File "Extract_Hydroweb_data.m" contains selection of Hydroweb stations
 
 -------------------------------------
 

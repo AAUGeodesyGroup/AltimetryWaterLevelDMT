@@ -1,9 +1,13 @@
-Hilda Vörös (HV) 01-02-2026
--------------------------------------
-These scripts were made to download, select, map and plot river altimetry data from Hydroweb, CLMS and Dahiti processingcentres. 
--------------------------------------
 
-Content of this folder:
+# Altimetry Water Level Data Management Tool
+
+Hilda Vörös (HV) 01-02-2026
+> :warning: Please read the file "Material handling guides.pdf" to understand how to use the materials in this folder
+> 
+## Description
+These scripts were made to download, select, map and plot river altimetry data from <mark>Hydroweb</mark>, CLMS and Dahiti processingcentres. 
+
+## Contents
 
 - Folder "BackgroundFiles" contains vectors, functions and matlab files that are used by the matlab files for selecting and plotting data.
 - Folder "CLMS_Niger", "Dahiti_Niger", "Hydroweb_Niger" contains raw data from processingcentres extracted from their websites 
@@ -21,5 +25,5 @@ Content of this folder:
 
 -------------------------------------
 
-Please read the file "Material handling guides.pdf" to understand how to use the materials in this folder. 
+
 

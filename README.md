@@ -30,9 +30,14 @@ The use of the **Altimetry Water Level Data Management Tool** produces various r
 
 The virtual stations from processing centres are handled in this tool as follows:
 - Filtering
+  - First filter with requirements about **percentage of temporal coverage** and **number of maximum days of allowed gaps**.
+  - Second filter is based on the selected stations from first filter and the specified **time period**.
 - Least squares method (LSM)
+  - Linear trend, Annual amplitude, Semiannual amplitude.
 - Mapping of filtered virtual stations
+  - Gives an overview of where virtual stations are located.
 - Geospatial and timeseries comparison
+  - Triple match and double match to compare altimetry data from each virtual station
 
 
 

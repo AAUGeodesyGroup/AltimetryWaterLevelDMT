@@ -23,10 +23,15 @@ The script given in Download_Hydroweb_data.py is using the python package [Py Hy
 
 ## Capabilities of this tool
 
-The use of the **Altimetry Water Level Data Management Tool** produces various results. A sample of results for Niger basin are briefly presented below.
+The use of the **Altimetry Water Level Data Management Tool** produces various results. A sample of results for Niger basin are presented in the image.
 
 ![teaser](https://github.com/user-attachments/assets/4e470725-176f-447f-890c-3ee50b343d4e)
 
-The virtual stations from processin centres 
+The virtual stations from processing centres are handled in this tool as follows:
+- Filtering
+- Least squares method (LSM)
+- Mapping of filtered virtual stations
+- Geospatial and timeseries comparison
+
 
 

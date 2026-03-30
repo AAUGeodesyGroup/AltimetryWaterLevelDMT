@@ -8,9 +8,6 @@ addpath '.\BackgroundFiles' % location for functions
 Path_figures = '.\Saved_Figures'; % location of folder where the figures would be saved
 Path_matFiles = '.\Saved_Matlab_Files'; % location of folder where the matlab files would be saved
 Path_CSVFiles = '.\Saved_CSV_Files'; % location of folder where the CSV files would be saved
-basinVectors = '.\BackgroundFiles\33_main_world_basins_vectors'; % shapefile contours
-addpath(basinVectors)
-load('.\BackgroundFiles\Basin_Information_EF_33main.mat'); % shapefile info
 addpath '.\Files2Download_CLMS_Data' % location of raw CLMS data for this basin
 load('Selected_CLMS_Stations.mat') % raw CLMS data for this basin
 

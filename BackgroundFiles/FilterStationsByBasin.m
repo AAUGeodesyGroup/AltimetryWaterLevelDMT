@@ -2,13 +2,12 @@ function Stations_inside_Basin = FilterStationsByBasin( ...
     BasinName, FirstVectorBasinName, SecondVectorBasinName, ...
     Raw_Stations, NumberOfBasins,basinVectors)
 
-    % Find and load polygon(s)
-    ChoosenBasin1 = find(ismember(BasinName, FirstVectorBasinName),1);
-    poly1 = load(sprintf('%s\\bd00%02d.vec', basinVectors,ChoosenBasin1));
+    % Find and load polygon
+    poly1 = load(sprintf('%s\\%s.vec', basinVectors,BasinName));
 
+    % If there are two polygons
     if NumberOfBasins == 2
-        ChoosenBasin2 = find(ismember(BasinName, SecondVectorBasinName));
-        poly2 =  load(sprintf('%s\\bd00%02d.vec', basinVectors,ChoosenBasin2));
+        poly2 = load(sprintf('%s\\%s.vec', basinVectors,BasinName));
     end
 
     % Extract the data variable

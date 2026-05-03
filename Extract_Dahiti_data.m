@@ -4,18 +4,16 @@ clc
 clear
 close all
 
-addpath '.\BackgroundFiles' % location for functions
+addpath '.\BackgroundFiles' % path to functions
 Path_figures = '.\Saved_Figures'; % location of folder where the figures would be saved
 Path_matFiles = '.\Saved_Matlab_Files'; % location of folder where the matlab files would be saved
 Path_CSVFiles = '.\Saved_CSV_Files'; % location of folder where the CSV files would be saved
-basinVectors = '.\BackgroundFiles\33_main_world_basins_vectors'; % shapefile contours
-addpath(basinVectors)
-load('.\BackgroundFiles\Basin_Information_EF_33main.mat'); % shapefile info
+basinVectors = '.\BackgroundFiles\33_Main_world_basin_Vectors'; % shapefile contours
 
 %% ### Change inputs down here ###
 
 % ### Requirements ###
-% In first selection retrieve stations with requirements:
+% In first filtration retrieve stations with requirements:
     % Temporal Coverage
     TempCoveragePct = 80; 
     % - 80% of temporal coverage between the specific period that each virtual station has
@@ -23,7 +21,7 @@ load('.\BackgroundFiles\Basin_Information_EF_33main.mat'); % shapefile info
     % Amount of maximum days the gap in timeperiod can be
     MaxDays = 365;
     % - no continuous gaps of longer than 12 months
-% In second selection retrieve stations with requirements:
+% In second filtration retrieve stations with requirements:
     startperiod = 2008;
     endperiod = 2025;
     
@@ -38,14 +36,14 @@ load('.\BackgroundFiles\Basin_Information_EF_33main.mat'); % shapefile info
     
     % Names of the folders where the figures are saved
     
-    Place_of_FirstSelection = fullfile(Path_figures, [BasinName '_Timeseries_First-selection']);
-    if ~exist(Place_of_FirstSelection, 'dir')
-    mkdir(Place_of_FirstSelection);
+    Place_of_FirstFilter = fullfile(Path_figures, [BasinName '_Timeseries_First-filter']);
+    if ~exist(Place_of_FirstFilter, 'dir')
+    mkdir(Place_of_FirstFilter);
     end
 
-    Place_of_SecondSelection = fullfile(Path_figures, [BasinName '_Timeseries_Second-selection']);
-    if ~exist(Place_of_SecondSelection, 'dir')
-    mkdir(Place_of_SecondSelection);
+    Place_of_SecondFilter = fullfile(Path_figures, [BasinName '_Timeseries_Second-filter']);
+    if ~exist(Place_of_SecondFilter, 'dir')
+    mkdir(Place_of_SecondFilter);
     end
 
     % Name of the folder where the matlab files are saved
@@ -89,7 +87,7 @@ load('.\BackgroundFiles\Basin_Information_EF_33main.mat'); % shapefile info
     xlabelName = 'Time';
     ylabelName = 'ID of stations';
 
-    % ### First selection plots ###
+    % ### First filter plots ###
 
     figName_notincluded = 'Deleted stations (Dahiti)';
     titleNotincluded = sprintf(['%s\n'...
@@ -103,23 +101,23 @@ load('.\BackgroundFiles\Basin_Information_EF_33main.mat'); % shapefile info
     '(requirement: under %d days gap and %.0f%% coverage)'], ...
     BasinName, MaxDays, TempCoveragePct);
        
-    % ### Second selection plots ###
+    % ### Second filter plots ###
     
-    figUnselectedName = 'Stations outside timeperiod (Dahiti)';
-    titleUnselected =sprintf(['%s\n'...
+    figDiscardedName = 'Stations outside timeperiod (Dahiti)';
+    titleDiscarded =sprintf(['%s\n'...
     'Discarded Dahiti stations in period %d-%d\n' ...
     '(requirement: under %d days gap and %.0f%% coverage)'], ...
     BasinName, startperiod, endperiod, MaxDays, TempCoveragePct);
     
-    figSelectedName = 'Stations inside timeperiod (Dahiti)';
-    titleSelected = sprintf(['%s\n'...
+    figRemainedName = 'Stations inside timeperiod (Dahiti)';
+    titleRemained = sprintf(['%s\n'...
     'Remained Dahiti stations in period %d-%d\n' ...
     '(requirement: under %d days gap and %.0f%% coverage)'], ...
     BasinName, startperiod, endperiod, MaxDays, TempCoveragePct);
 %% ### End of inputs ###
 
 %% ###################################
-%% ### Selection of stations inside basin ###
+%% ### Filter of stations inside basin ###
 dir_list = dir(PlaceOfFiles);
 
 Raw_Dahiti_Stations = struct();
@@ -171,7 +169,7 @@ Total_Number = length(Stations_inside_Dahiti_Basin);
 TotalNumberStation = sprintf('%d',Total_Number);
 
 %% ###################################
-%% ### First selection ###
+%% ### First filter ###
 NotIncluded = Stations_inside_Dahiti_Basin;
 
 for i = length(Stations_inside_Dahiti_Basin):-1:1
@@ -215,18 +213,18 @@ fig_good = PlotMyFigure(figName_included,Kept_stations,titleIncluded,xlabelName,
 fig_bad = PlotMyFigure(figName_notincluded,Deleted_stations,titleNotincluded,xlabelName,ylabelName,PlotStyle);
 
 %saving the figures
-filename_good = sprintf('%s_Dahiti_Remainded_1Selection',BasinName);
-savefig(fig_good, fullfile(Place_of_FirstSelection, [filename_good '.fig']));
-saveas(fig_good, fullfile(Place_of_FirstSelection, [filename_good '.jpg']));
-filename_bad = sprintf('%s_Dahiti_Discarded_1Selection',BasinName);
-savefig(fig_bad, fullfile(Place_of_FirstSelection, [filename_bad '.fig']));
-saveas(fig_bad, fullfile(Place_of_FirstSelection, [filename_bad '.jpg']));
+filename_good = sprintf('%s_Dahiti_Remainded_1Filter',BasinName);
+savefig(fig_good, fullfile(Place_of_FirstFilter, [filename_good '.fig']));
+saveas(fig_good, fullfile(Place_of_FirstFilter, [filename_good '.jpg']));
+filename_bad = sprintf('%s_Dahiti_Discarded_1Filter',BasinName);
+savefig(fig_bad, fullfile(Place_of_FirstFilter, [filename_bad '.fig']));
+saveas(fig_bad, fullfile(Place_of_FirstFilter, [filename_bad '.jpg']));
 
 % saving information to readme file
-Selection1_Number_deleted = length(Deleted_stations);
-Selection1_Discarded = sprintf('%d',Selection1_Number_deleted);
-Selection1_Number_kept = length(Kept_stations);
-Selection1_Remained = sprintf('%d',Selection1_Number_kept);
+Filter1_Number_deleted = length(Deleted_stations);
+Filter1_Discarded = sprintf('%d',Filter1_Number_deleted);
+Filter1_Number_kept = length(Kept_stations);
+Filter1_Remained = sprintf('%d',Filter1_Number_kept);
 
 ReadMeText = sprintf(['Made by: %s. '...
     'Date for creating the file: %s. '...
@@ -234,9 +232,9 @@ ReadMeText = sprintf(['Made by: %s. '...
     'Source files: %s and %s. '...
     'Location: %s. '...
     'Processing Center: %s. '...
-    'Requirements for first selection: %s coverage and no data gaps bigger than %s. '...
-    'Number of stations before selection: %s. '...
-    'Number of stations after first selection: %s discarded, %s remained.'],Author,CreationDate,MatlabVersion,PythonSourceFile,MatlabSourceFile,BasinName,Name_Processingcenter,pct,gap,TotalNumberStation,Selection1_Discarded,Selection1_Remained);
+    'Requirements for first filter: %s coverage and no data gaps bigger than %s. '...
+    'Number of stations before filter: %s. '...
+    'Number of stations after first filter: %s discarded, %s remained.'],Author,CreationDate,MatlabVersion,PythonSourceFile,MatlabSourceFile,BasinName,Name_Processingcenter,pct,gap,TotalNumberStation,Filter1_Discarded,Filter1_Remained);
 NameOfFirstFile = sprintf('Dahiti_%s_first_kept.mat',BasinName);
 
 % Saving data as mat files that also contains a README
@@ -265,7 +263,7 @@ writetimetable(TT, filename);
 end
 
 %% ###################################
-%% ### Second selection ###
+%% ### Second filter ###
 
 LoadedFile = load(['./', fullFileName]);
 general_list =LoadedFile.Kept_stations;
@@ -309,32 +307,32 @@ for i = length(general_list):-1:1
 end
 
 %Plotting figure with the stations of interest:
-fig_selected= PlotMyFigure(figSelectedName,Dahiti_final_kept,titleSelected,xlabelName,ylabelName,PlotStyle);
-fig_unselected =PlotMyFigure(figUnselectedName,Dahiti_deleted,titleUnselected,xlabelName,ylabelName,PlotStyle);
+fig_remained= PlotMyFigure(figRemainedName,Dahiti_final_kept,titleRemained,xlabelName,ylabelName,PlotStyle);
+fig_discarded =PlotMyFigure(figDiscardedName,Dahiti_deleted,titleDiscarded,xlabelName,ylabelName,PlotStyle);
 
 %saving the figures
-filename_selected = sprintf('%s_Dahiti_Remainded_2Selection_%d-%d', BasinName, startperiod, endperiod);
-filename_unselected = sprintf('%s_Dahiti_Discarded_2Selection_%d-%d', BasinName, startperiod, endperiod);
+filename_remained = sprintf('%s_Dahiti_Remainded_2Filter_%d-%d', BasinName, startperiod, endperiod);
+filename_discarded = sprintf('%s_Dahiti_Discarded_2Filter_%d-%d', BasinName, startperiod, endperiod);
 
-if ~isempty(fig_selected) && isvalid(fig_selected)
-    savefig(fig_selected, fullfile(Place_of_SecondSelection, [filename_selected '.fig']));
-    saveas(fig_selected, fullfile(Place_of_SecondSelection, [filename_selected '.jpg']));
+if ~isempty(fig_remained) && isvalid(fig_remained)
+    savefig(fig_remained, fullfile(Place_of_SecondFilter, [filename_remained '.fig']));
+    saveas(fig_remained, fullfile(Place_of_SecondFilter, [filename_remained '.jpg']));
 else
-    disp('No stations in selected timeperiod, therefore no plot of it.');
+    disp('No stations are remained with this timeperiod, therefore no plot of it.');
 end
 
-if ~isempty(fig_unselected) && isvalid(fig_unselected)
-    savefig(fig_unselected, fullfile(Place_of_SecondSelection, [filename_unselected '.fig']));
-    saveas(fig_unselected, fullfile(Place_of_SecondSelection, [filename_unselected '.jpg']));
+if ~isempty(fig_discarded) && isvalid(fig_discarded)
+    savefig(fig_discarded, fullfile(Place_of_SecondFilter, [filename_discarded '.fig']));
+    saveas(fig_discarded, fullfile(Place_of_SecondFilter, [filename_discarded '.jpg']));
 else
-    disp('No stations in selected timeperiod, therefore no plot of it.');
+    disp('No stations are remained with this timeperiod, therefore no plot of it.');
 end
 
 % saving information to readme file
-Selection2_Number_deleted = length(Dahiti_deleted);
-Selection2_Discarded = sprintf('%d',Selection2_Number_deleted);
-Selection2_Number_kept = length(Dahiti_final_kept);
-Selection2_Remained = sprintf('%d',Selection2_Number_kept);
+Filter2_Number_deleted = length(Dahiti_deleted);
+Filter2_Discarded = sprintf('%d',Filter2_Number_deleted);
+Filter2_Number_kept = length(Dahiti_final_kept);
+Filter2_Remained = sprintf('%d',Filter2_Number_kept);
 
 ReadMeTextFinal = sprintf(['Made by: %s. '...
     'Date for creating the file: %s. '...
@@ -342,11 +340,11 @@ ReadMeTextFinal = sprintf(['Made by: %s. '...
     'Source files: %s and %s. '...
     'Location: %s. '...
     'Processing Center: %s. '...
-    'Requirements for first selection: %s coverage and no data gaps bigger than %s. '...
-    'Requirements for second selection: %s coverage and no data gaps bigger than %s in period %s. '...
-    'Number of stations before selection: %s. '...
-    'Number of stations after first selection: %s discarded, %s remained. '...
-    'Number of stations after second selection: %s discarded, %s remained.'],Author,CreationDate,MatlabVersion,PythonSourceFile,MatlabSourceFile,BasinName,Name_Processingcenter,pct,gap,pct,gap,period,TotalNumberStation,Selection1_Discarded,Selection1_Remained,Selection2_Discarded,Selection2_Remained);
+    'Requirements for first filter: %s coverage and no data gaps bigger than %s. '...
+    'Requirements for second filter: %s coverage and no data gaps bigger than %s in period %s. '...
+    'Number of stations before filter: %s. '...
+    'Number of stations after first filter: %s discarded, %s remained. '...
+    'Number of stations after second filter: %s discarded, %s remained.'],Author,CreationDate,MatlabVersion,PythonSourceFile,MatlabSourceFile,BasinName,Name_Processingcenter,pct,gap,pct,gap,period,TotalNumberStation,Filter1_Discarded,Filter1_Remained,Filter2_Discarded,Filter2_Remained);
 NameOfFinalFile = sprintf('Dahiti_%s_%s.mat',BasinName,period);
 
 % Saving data as mat files that also contains a README

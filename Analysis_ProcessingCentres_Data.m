@@ -1,5 +1,5 @@
 % Contains: 
-% 1) A map that shows the location of selected processing centers inside a chosen basin 
+% 1) A map that shows the location of filtered processing centers inside a chosen basin 
 % 2) LSM (least square method) calculation for processing centers (Dahiti, CLMS,
 % Hydroweb) resulting in values for linear trend, annual and semiannual
 % amplitude. Results are plotted on map with tabs for every values. Matlab files and figures are saved.

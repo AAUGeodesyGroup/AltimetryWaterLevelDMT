@@ -1,17 +1,17 @@
-% This file selects those CLMS stations from matalab file, that are inside a
+% This file selects those CLMS stations from MATLAB file, that are inside a
 % given basin.
 clc
 clear
 close all
 tic
-addpath 'C:\Users\Bruger\Documents\MEGA\Geodesy\12_DataComputations\SFAS_Niger_Data\BackgroundFiles' % location for functions
+addpath ('..\BackgroundFiles') % Path to functions
 load('CLMS_CSV2MAT.mat');
-basinVectors = 'C:\Users\Bruger\Documents\MEGA\Geodesy\12_DataComputations\SFAS_Niger_Data\BackgroundFiles\33_main_world_basins_vectors'; % shapefile contours
-addpath(basinVectors)
-load('C:\Users\Bruger\Documents\MEGA\Geodesy\12_DataComputations\SFAS_Niger_Data\BackgroundFiles\Basin_Information_EF_33main.mat'); % shapefile info
+basinVectors = '..\BackgroundFiles\33_Main_world_basin_Vectors'; % shapefile contours
 toc
 
 %% --- Change input in this section
+% Name of the basin(s) working with
+BasinName = 'Niger';
 
 % Amount of basins
 numBasins = 1; % if 1 is the input, then Basin2 will not be shown
@@ -38,7 +38,7 @@ end
 %% Select those stations that are inside basin
 tic
 Stations_inside_Basin = FilterStationsByBasin( ...
-    Basin_Name, Basin1, Basin2, ...
+    BasinName, Basin1, Basin2, ...
     SavedData, numBasins,basinVectors);
 toc
 

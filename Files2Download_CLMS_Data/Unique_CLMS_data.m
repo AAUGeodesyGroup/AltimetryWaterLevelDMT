@@ -2,8 +2,8 @@ clc
 clear
 close all
 
-addpath 'C:\Users\Bruger\Documents\MEGA\Geodesy\12_DataComputations\SFAS_Niger_Data\BackgroundFiles'
-PlaceOfFiles =  'C:\Users\Bruger\Documents\MEGA\Geodesy\12_DataComputations\SFAS_Niger_Data\CLMS_Niger';
+addpath ('..\BackgroundFiles') % Path to functions
+PlaceOfFiles = '.\CLMS_Niger'; % Path to the folder that stores the raw CLMS data, which contains duplicate records
 
 %% --- Reading json files ---
 dir_list=dir(PlaceOfFiles);

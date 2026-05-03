@@ -177,7 +177,7 @@ saveas(fig_bad, fullfile(Place_of_FirstFilter, [filename_bad '.jpg']));
 Filter1_Number_deleted = length(Deleted_stations);
 Filter1_Discarded = sprintf('%d',Filter1_Number_deleted);
 Filter1_Number_kept = length(Kept_stations);
-Filter_Remained = sprintf('%d',Filter1_Number_kept);
+Filter1_Remained = sprintf('%d',Filter1_Number_kept);
 
 ReadMeText = sprintf(['Made by: %s. '...
     'Date for creating the file: %s. '...

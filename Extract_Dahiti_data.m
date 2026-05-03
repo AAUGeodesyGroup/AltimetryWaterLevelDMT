@@ -35,7 +35,6 @@ basinVectors = '.\BackgroundFiles\33_Main_world_basin_Vectors'; % shapefile cont
     BasinName = 'Niger'; % Name of the basin worked on
     
     % Names of the folders where the figures are saved
-    
     Place_of_FirstFilter = fullfile(Path_figures, [BasinName '_Timeseries_First-filter']);
     if ~exist(Place_of_FirstFilter, 'dir')
     mkdir(Place_of_FirstFilter);
@@ -162,7 +161,7 @@ for i=length(dir_list):-1:1
 end
 
 Stations_inside_Dahiti_Basin = FilterStationsByBasin( ...
-    Basin_Name, VectorBasinName1, VectorBasinName2, ...
+    BasinName, VectorBasinName1, VectorBasinName2, ...
     Raw_Dahiti_Stations, NumberOfVectorBasins,basinVectors);
 
 Total_Number = length(Stations_inside_Dahiti_Basin);

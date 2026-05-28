@@ -3,7 +3,7 @@
 
 [![Made by Hilda Vörös](https://img.shields.io/badge/Made%20by-Hilda_Vörös-blue)](https://aaugeodesy.com/hilda-voros/)
 
-> :warning: Please read the Wiki on GitHub to understand how to use the materials
+> :warning: Please read the [Wiki of this tool](https://github.com/AAUGeodesyGroup/AltimetryWaterLevelDMT/wiki) on GitHub to understand how to use the materials, that are provided.
 
 ## License and citation
 

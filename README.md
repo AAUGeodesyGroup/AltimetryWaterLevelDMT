@@ -13,12 +13,21 @@ The **Altimetry Water Level Data Management Tool** is created to facilitate the 
 - Dahiti: [Water Level Time Series from Satellite Altimetry](https://dahiti.dgfi.tum.de/en/products/water-level-altimetry/)
 - Hydroweb: [Theia Hydroweb Operational Altimetry River Water Level (ID: HYDROWEB_RIVERS_OPE)](https://hydroweb.next.theia-land.fr/)
 
-## References
-The script given in Download_CLMS_data.py is based on the codes given by William Ray in [GitHubGist](https://gist.github.com/willrayeo/8aa424384f272d3003a2dea6460cb07b#file-keychain_credentials-py)
+## License and citation
 
-The script given in Download_Dahiti_data.py is based on the codes given by Christian Schwatke in the [Dahiti website](https://dahiti.dgfi.tum.de/en/api/doc/v2/download-water-level/)
+The framework is licensed under a
+[Creative Commons Attribution 4.0 International License][cc-by].
+[![CC BY 4.0][cc-by-image]][cc-by]
 
-The script given in Download_Hydroweb_data.py is using the python package [Py Hydroweb](https://pypi.org/project/py-hydroweb/)
+This tool should be cited as:
+
+* Vörös, H., 2026. AltimetryWaterLevelDMT. [link](link)
+
+The following scripts in this tool are based on the following authors: 
+- The script given in Download_CLMS_data.py is based on the codes given by William Ray in [GitHubGist](https://gist.github.com/willrayeo/8aa424384f272d3003a2dea6460cb07b#file-keychain_credentials-py)
+- The script given in Download_Dahiti_data.py is based on the codes given by Christian Schwatke in the [Dahiti website](https://dahiti.dgfi.tum.de/en/api/doc/v2/download-water-level/)
+- The script given in Download_Hydroweb_data.py is using the python package [Py Hydroweb](https://pypi.org/project/py-hydroweb/)
+
 
 
 ## Capabilities of this tool
@@ -38,6 +47,11 @@ The virtual stations from processing centres are handled in this tool as follows
   - Gives an overview of where virtual stations are located.
 - Geospatial and timeseries comparison
   - Triple match and double match to compare altimetry data from each virtual station
+
+
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
+[cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
+[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
 
 
 

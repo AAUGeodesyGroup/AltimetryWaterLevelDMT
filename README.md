@@ -4,14 +4,6 @@
 [![Made by Hilda Vörös](https://img.shields.io/badge/Made%20by-Hilda_Vörös-blue)](https://aaugeodesy.com/hilda-voros/)
 
 > :warning: Please read the Wiki on GitHub to understand how to use the materials
- 
-## Description
-The **Altimetry Water Level Data Management Tool** is created to facilitate the easy downloading, filtering, mapping, and plotting of river altimetry data from the processing centres CLMS, Dahiti, and Hydroweb.
-
-**This tool is capable of downloading and processing the following data from the processing centres:**
-- CLMS: [River Water Level 2002-present (vector), global, Near Real Time – version 2](https://land.copernicus.eu/en/products/water-bodies/water-level-rivers-near-real-time-v2.0#download)
-- Dahiti: [Water Level Time Series from Satellite Altimetry](https://dahiti.dgfi.tum.de/en/products/water-level-altimetry/)
-- Hydroweb: [Theia Hydroweb Operational Altimetry River Water Level (ID: HYDROWEB_RIVERS_OPE)](https://hydroweb.next.theia-land.fr/)
 
 ## License and citation
 
@@ -21,14 +13,25 @@ The framework is licensed under a
 
 This tool should be cited as:
 
-* Vörös, H., 2026. AltimetryWaterLevelDMT. [link](link)
+* Vörös, H., 2026. AltimetryWaterLevelDMT. [https://doi.org/10.6084/m9.figshare.32452485)](https://doi.org/10.6084/m9.figshare.32452485)
 
-The following scripts in this tool are based on the following authors: 
+The following scripts in this tool are based on the following sources: 
 - The script given in Download_CLMS_data.py is based on the codes given by William Ray in [GitHubGist](https://gist.github.com/willrayeo/8aa424384f272d3003a2dea6460cb07b#file-keychain_credentials-py)
 - The script given in Download_Dahiti_data.py is based on the codes given by Christian Schwatke in the [Dahiti website](https://dahiti.dgfi.tum.de/en/api/doc/v2/download-water-level/)
 - The script given in Download_Hydroweb_data.py is using the python package [Py Hydroweb](https://pypi.org/project/py-hydroweb/)
 
 
+## Funding
+
+We acknowledge the support of the Independent Research Fund Denmark (DFF) through the DFF1-Green thematic research project entitled “Space-based Free Flood Awareness System for Africa (SFAS),” Grant No. 10.46540/4307-00146B
+
+## Description
+The **Altimetry Water Level Data Management Tool** is created to facilitate the easy downloading, filtering, mapping, and plotting of river altimetry data from the processing centres CLMS, Dahiti, and Hydroweb.
+
+**This tool is capable of downloading and processing the following data from the processing centres:**
+- CLMS: [River Water Level 2002-present (vector), global, Near Real Time – version 2](https://land.copernicus.eu/en/products/water-bodies/water-level-rivers-near-real-time-v2.0#download)
+- Dahiti: [Water Level Time Series from Satellite Altimetry](https://dahiti.dgfi.tum.de/en/products/water-level-altimetry/)
+- Hydroweb: [Theia Hydroweb Operational Altimetry River Water Level (ID: HYDROWEB_RIVERS_OPE)](https://hydroweb.next.theia-land.fr/)
 
 ## Capabilities of this tool
 

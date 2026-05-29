@@ -57,13 +57,6 @@ basinVectors = '.\BackgroundFiles\33_Main_world_basin_Vectors'; % shapefile cont
     mkdir(Place_of_CSVfiles);
     end
     
-% ### Basin inputs ###
-    % Insert the correct names that are found in "Basin_Name" from "Basin_Information_EF_33main.mat"
-    VectorBasinName1 = 'Niger';
-    VectorBasinName2 = 'Brahmaputra'; % leave as it is if NumberOfVectorBasins = 1, because it would not be used
-    
-    NumberOfVectorBasins = 1; % add the correct number that is similar to amount of basin names
-
 % ### Information to write README text file ###  
     pct = sprintf('%d %%',TempCoveragePct);
     gap = sprintf('%d days',MaxDays);
@@ -161,8 +154,7 @@ for i=length(dir_list):-1:1
 end
 
 Stations_inside_Dahiti_Basin = FilterStationsByBasin( ...
-    BasinName, VectorBasinName1, VectorBasinName2, ...
-    Raw_Dahiti_Stations, NumberOfVectorBasins,basinVectors);
+    BasinName, Raw_Dahiti_Stations, basinVectors);
 
 Total_Number = length(Stations_inside_Dahiti_Basin);
 TotalNumberStation = sprintf('%d',Total_Number);

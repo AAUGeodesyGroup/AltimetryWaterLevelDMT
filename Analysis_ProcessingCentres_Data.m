@@ -17,18 +17,11 @@ addpath '.\BackgroundFiles'
 
 %% --- Change input in this section
 
-% Amount of basins
-numBasins = 1; % if 1 is the input, then Basin2 will not be shown
+% Name of basin
+BasinName = 'Niger';
 
-% Name of first basin
-Basin1 = 'Niger'; % 'Niger' or 'Ganges'
-
-BasinColor1 = 'y'; % Color of basin contour
-
-% Name of second Basin
-Basin2 = 'Brahmaputra'; % 'Brahmaputra'
-
-BasinColor2 = 'w'; % Color of basin contour
+% Color of basin contour
+BasinColor = 'y';
 
 % Line width for the basins
 BasinLineWidth = 2;
@@ -36,22 +29,15 @@ BasinLineWidth = 2;
 % Year the dataset is from
 PeriodYear = '2008-2025'; % choose between '2008-2025' or '2016-2025' or '2018-2025'
 
-
-if numBasins == 2 
-    CombineBasin = sprintf('%s-%s', Basin1, Basin2);
-else
-    CombineBasin = Basin1;
-end
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Name of the folder where the figures are saved
-    Map_of_stations = fullfile(Path_figures, [CombineBasin '_ProcessingCentres_positions']);
+    Map_of_stations = fullfile(Path_figures, [BasinName '_ProcessingCentres_positions']);
     if ~exist(Map_of_stations, 'dir')
         mkdir(Map_of_stations);
     end
 
 % Name of the folder where the matlab files are saved
-    Place_of_Matlabfiles = fullfile(Path_matFiles, [CombineBasin '_LSM_results']);
+    Place_of_Matlabfiles = fullfile(Path_matFiles, [BasinName '_LSM_results']);
     if ~exist(Place_of_Matlabfiles, 'dir')
     mkdir(Place_of_Matlabfiles);
     end
@@ -63,17 +49,13 @@ end
 ProcCenter = {'Dahiti', 'CLMS', 'Hydroweb'};
 
 % name of files
-filenames = cellfun(@(name) sprintf('%s_%s_%s.mat', name, CombineBasin, PeriodYear), ProcCenter, 'UniformOutput', false);
+filenames = cellfun(@(name) sprintf('%s_%s_%s.mat', name, BasinName, PeriodYear), ProcCenter, 'UniformOutput', false);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Plotting all stations
 
 % Figure title
-if numBasins == 2
-    figName = sprintf('Stations from %s in %s-%s basins', PeriodYear, Basin1, Basin2);
-else
-    figName = sprintf('Stations from %s in %s basin', PeriodYear, Basin1);
-end
+figName = sprintf('Stations from %s in %s basin', PeriodYear, BasinName);
 
 % Plot of figure showing all stations
     Fig_AllStations = figure('Name', figName);
@@ -93,17 +75,13 @@ end
 title(['Stations from ' PeriodYear])
 
     % Adding basin polygons
-    if numBasins == 2
-        PlotBasin(Basin1, Basin2, BasinColor1, BasinColor2, BasinLineWidth);
-    else
-        PlotBasin(Basin1, '', BasinColor1, '', BasinLineWidth);
-    end
+    PlotBasin(BasinName, BasinColor, BasinLineWidth);
 
     legend show; % gather all DisplayName inputs
     legend('Location','best', 'Color','#707070', 'TextColor','w');
 
     %Saving figures
-    FigSavedName = sprintf('%s_Station_positions_%s.fig',CombineBasin,PeriodYear);
+    FigSavedName = sprintf('%s_Station_positions_%s.fig',BasinName,PeriodYear);
     savefig(Fig_AllStations,fullfile(Map_of_stations, FigSavedName));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -178,16 +156,12 @@ for s = 1:length(ProcCenterNames)
         geobasemap(gx1, 'colorterrain')
         colormap('hot')
 
-        if numBasins == 2
-            PlotBasin(Basin1, Basin2, BasinColor1, BasinColor2, BasinLineWidth);
-        else
-            PlotBasin(Basin1, '', BasinColor1, '', BasinLineWidth);
-        end
+        PlotBasin(BasinName, BasinColor, BasinLineWidth);
 
         scatter(gx1, [stations.Lat], [stations.Lon], 25, trend_values, 'filled');
         colorbar(gx1);
         clim([-0.5 0.5]);
-        title(gx1, ['Linear trend - ' sourceName ' (' PeriodYear '), ' CombineBasin]);
+        title(gx1, ['Linear trend - ' sourceName ' (' PeriodYear '), ' BasinName]);
 
         % Annual Amplitude
         gx2 = geoaxes(tab2);
@@ -195,15 +169,11 @@ for s = 1:length(ProcCenterNames)
         colormap('hot')
         hold(gx2, 'on')
 
-        if numBasins == 2
-            PlotBasin(Basin1, Basin2, BasinColor1, BasinColor2, BasinLineWidth);
-        else
-            PlotBasin(Basin1, '', BasinColor1, '', BasinLineWidth);
-        end
+        PlotBasin(BasinName, BasinColor, BasinLineWidth);
 
         scatter(gx2, [stations.Lat], [stations.Lon], 25, amplitude_annual, 'filled');
         colorbar(gx2);
-        title(gx2, ['Annual amplitude - ' sourceName ' (' PeriodYear '), ' CombineBasin]);
+        title(gx2, ['Annual amplitude - ' sourceName ' (' PeriodYear '), ' BasinName]);
 
         % Semiannual Amplitude
         gx3 = geoaxes(tab3);
@@ -211,29 +181,25 @@ for s = 1:length(ProcCenterNames)
         colormap('hot')
         hold(gx3, 'on')
 
-        if numBasins == 2
-            PlotBasin(Basin1, Basin2, BasinColor1, BasinColor2, BasinLineWidth);
-        else
-            PlotBasin(Basin1, '', BasinColor1, '', BasinLineWidth);
-        end
+        PlotBasin(BasinName, BasinColor, BasinLineWidth);
 
         scatter(gx3, [stations.Lat], [stations.Lon], 25, amplitude_semiannual, 'filled');
         colorbar(gx3);
-        title(gx3, ['Semiannual amplitude - ' sourceName ' (' PeriodYear '), ' CombineBasin]);
+        title(gx3, ['Semiannual amplitude - ' sourceName ' (' PeriodYear '), ' BasinName]);
 
         % Saving the figures
-        Map_of_LSM = fullfile(Path_figures, [CombineBasin '_LSM_values']);
+        Map_of_LSM = fullfile(Path_figures, [BasinName '_LSM_values']);
         if ~exist(Map_of_LSM, 'dir')
             mkdir(Map_of_LSM);
         end
 
-        FigSavedName_LSM = sprintf('%s_%s_LSM_values_%s.fig', CombineBasin, sourceName, PeriodYear);
+        FigSavedName_LSM = sprintf('%s_%s_LSM_values_%s.fig', BasinName, sourceName, PeriodYear);
         savefig(f, fullfile(Map_of_LSM, FigSavedName_LSM));
 end
 
 % All processing centers saved at matlab files in one file with readme file
     README_collective = sprintf('File contains trend values, amplitude annual and semiannual values for stations from Dahiti, Hydroweb and CLMS for period %s. ',PeriodYear);
-    NameOfAllLSMfile = sprintf('%s_%s_All_LSM_results.mat',CombineBasin,PeriodYear);
+    NameOfAllLSMfile = sprintf('%s_%s_All_LSM_results.mat',BasinName,PeriodYear);
     FileName = fullfile(Place_of_Matlabfiles, NameOfAllLSMfile);
     save(FileName, 'all_LSM_results', 'README_collective'); 
 
@@ -271,8 +237,8 @@ TripleMatches_DCH =FindAndPlotMatches( ...
     {lonD,lonC,lonH}, ...
     {'Dahiti','CLMS','Hydroweb'}, ...
     fieldsToKeep, ...
-    numBasins, Basin1, Basin2, BasinColor1, BasinColor2, BasinLineWidth,...
-    9,Path_figures,CombineBasin,PeriodYear);
+    BasinName, BasinColor, BasinLineWidth,...
+    9,Path_figures,PeriodYear);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %% Finding double matches
@@ -284,16 +250,16 @@ doubleMatches_DC= FindAndPlotMatches( ...
     {lonD,lonC}, ...
     {'Dahiti','CLMS'}, ...
     fieldsToKeep, ...
-    numBasins, Basin1, Basin2, BasinColor1, BasinColor2, BasinLineWidth,...
-    9,Path_figures,CombineBasin,PeriodYear);
+    BasinName, BasinColor, BasinLineWidth,...
+    9,Path_figures,PeriodYear);
 
 doubleMatches_CH = FindAndPlotMatches( ...
     tolerance_km, ...
     {C, H}, {latC, latH}, {lonC, lonH}, ...
     {'CLMS','Hydroweb'}, ...
     fieldsToKeep, ...
-    numBasins, Basin1, Basin2, BasinColor1, BasinColor2, BasinLineWidth, ...
-    9,Path_figures,CombineBasin,PeriodYear);
+    BasinName, BasinColor, BasinLineWidth,...
+    9,Path_figures,PeriodYear);
 
 doubleMatches_DH= FindAndPlotMatches( ...
     tolerance_km, ...
@@ -302,8 +268,8 @@ doubleMatches_DH= FindAndPlotMatches( ...
     {lonD,lonH}, ...
     {'Dahiti','Hydroweb'}, ...
     fieldsToKeep, ...
-    numBasins, Basin1, Basin2, BasinColor1, BasinColor2, BasinLineWidth,...
-    9,Path_figures,CombineBasin,PeriodYear);
+    BasinName, BasinColor, BasinLineWidth,...
+    9,Path_figures,PeriodYear);
 
 %%%%%%%%%%%%%%%%%%%%%
 %%%  Functions    %%%
@@ -322,34 +288,15 @@ function [sourceName, dataStruct, keptName] = ImportingProcCenters(ProcCenter,fi
 end
 
 %% --- Function to plot basins ---
-function BasinPolyPlot = PlotBasin(NameOfBasin1, NameOfBasin2, BasinColor1, BasinColor2, BasinLineWidth)
-
-    addpath('C:\Users\Bruger\Documents\MEGA\Geodesy\12_DataComputations\SFAS_Niger_Data\BackgroundFiles\33_main_world_basins_vectors')
-    dataInfo = load('C:\Users\Bruger\Documents\MEGA\Geodesy\12_DataComputations\SFAS_Niger_Data\BackgroundFiles\Basin_Information_EF_33main.mat','Basin_Name');
-    Basin_Name = dataInfo.Basin_Name;
-
+function BasinPolyPlot = PlotBasin(NameOfBasin, BasinColor, BasinLineWidth)
+    basinVectors = '.\BackgroundFiles\33_Main_world_basin_Vectors';
     hold on;
-
-    % First basin
-    ChoosenBasin1 = find(ismember(Basin_Name, NameOfBasin1));
-    poly1 = load(sprintf('bd00%02d.vec', ChoosenBasin1));
+    poly1 = load(sprintf('%s\\%s.vec', basinVectors,NameOfBasin));
     h1 = plot(poly1(:,2), poly1(:,1), ...
-        'Color', BasinColor1, ...
+        'Color', BasinColor, ...
         'LineWidth', BasinLineWidth, ...
-        'DisplayName', NameOfBasin1);
-
-    if ~isempty(NameOfBasin2)
-        % Second basin
-        ChoosenBasin2 = find(ismember(Basin_Name, NameOfBasin2));
-        poly2 = load(sprintf('bd00%02d.vec', ChoosenBasin2));
-        h2 = plot(poly2(:,2), poly2(:,1), ...
-            'Color', BasinColor2, ...
-            'LineWidth', BasinLineWidth, ...
-            'DisplayName', NameOfBasin2);
-        BasinPolyPlot = [h1; h2];
-    else
+        'DisplayName', NameOfBasin);
         BasinPolyPlot = h1;
-    end
 end
 
 %% --- Function to numerate name of processing center ---
@@ -396,8 +343,8 @@ function Matches = FindAndPlotMatches( ...
     PCs, latPCs, lonPCs, ...
     PCNames, ...
     fieldsToKeep, ...
-    numBasins, Basin1, Basin2, BasinColor1, BasinColor2, BasinLineWidth, ...
-    maxPlotsPerFigure,Path_figures,CombineBasin,PeriodYear)
+    BasinName, BasinColor, BasinLineWidth, ...
+    maxPlotsPerFigure,Path_figures,PeriodYear)
 
     nPC = numel(PCs); 
     assert(nPC == numel(PCNames), 'Mismatch in PC inputs')
@@ -471,11 +418,7 @@ function Matches = FindAndPlotMatches( ...
         MapStations(data_plot, PCNames{p});
     end
     
-    if numBasins == 2
-        PlotBasin(Basin1, Basin2, BasinColor1, BasinColor2, BasinLineWidth);
-    else
-        PlotBasin(Basin1, '', BasinColor1, '', BasinLineWidth);
-    end
+    PlotBasin(BasinName, BasinColor, BasinLineWidth);
     
     legend show
     legend('Location','best','Color','#707070','TextColor','w');
@@ -484,12 +427,12 @@ function Matches = FindAndPlotMatches( ...
         strjoin(PCNames,' & '), tolerance_km, PeriodYear);
     title(mapTitle)
    
-    Map_of_matchedstations = fullfile(Path_figures, [CombineBasin '_MatchedStations_Map']);
+    Map_of_matchedstations = fullfile(Path_figures, [BasinName '_MatchedStations_Map']);
     if ~exist(Map_of_matchedstations, 'dir')
         mkdir(Map_of_matchedstations);
     end
 
-    Plot_of_timeseries = fullfile(Path_figures, [CombineBasin '_MatchedStations_Timeseries']);
+    Plot_of_timeseries = fullfile(Path_figures, [BasinName '_MatchedStations_Timeseries']);
     if ~exist(Plot_of_timeseries, 'dir')
         mkdir(Plot_of_timeseries);
     end

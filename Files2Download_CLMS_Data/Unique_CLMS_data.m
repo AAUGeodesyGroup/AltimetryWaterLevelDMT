@@ -3,7 +3,7 @@ clear
 close all
 
 addpath ('..\BackgroundFiles') % Path to functions
-PlaceOfFiles = '.\CLMS_Niger'; % Path to the folder that stores the raw CLMS data, which contains duplicate records
+PlaceOfFiles = 'Raw_CLMS_Niger'; % Path to the folder that stores the raw CLMS data, which contains duplicate records
 
 %% --- Reading json files ---
 dir_list=dir(PlaceOfFiles);
@@ -31,12 +31,19 @@ for i=length(dir_list):-1:1
 
     sta_name(2:end) = lower(sta_name(2:end)); % First character of name is kept as upper case and the other characters are lowercase.
    
-    % Read file
-        % json has following arrays that shows up when writing
-        % fieldnames(filedata) in Command Window
+   % Defining columns with same values of water level and uncertainty
      m_header = filedata.geometry.coordinates;
-     Waterlevel = DATA.orthometric_height_of_water_surface_at_reference_position;
+   try
+       Waterlevel = DATA.water_surface_height_above_reference_datum;
+   catch 
+       Waterlevel = DATA.orthometric_height_of_water_surface_at_reference_position;
+   end
 
+   try
+       WaterlevelUncertainty = DATA.water_surface_height_uncertainty;
+   catch 
+       WaterlevelUncertainty = DATA.associated_uncertainty;
+   end
 
     % saving raw data in a struct
     R=R+1;
@@ -46,7 +53,7 @@ for i=length(dir_list):-1:1
     Raw_CLMS_Stations(R).Lon = m_header(1);
     Raw_CLMS_Stations(R).Time = datetime(year(DATA.datetime),month(DATA.datetime),day(DATA.datetime));
     Raw_CLMS_Stations(R).WaterLevel = Waterlevel;
-    Raw_CLMS_Stations(R).WaterLevelUncertainty = DATA.associated_uncertainty;
+    Raw_CLMS_Stations(R).WaterLevelUncertainty = WaterlevelUncertainty;
     Raw_CLMS_Stations(R).Id = i*ones(length(Raw_CLMS_Stations(R).Time),1);
     Raw_CLMS_Stations(R).IdNumber = i;
 end

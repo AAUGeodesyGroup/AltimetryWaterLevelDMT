@@ -74,9 +74,9 @@ Fig_AllStations = figure('Name', figName);
 PlotStationMap(PeriodYear, BasinName, BasinColor, BasinLineWidth, ...
                 ProcCenter,allStations);
 
-% Saving figures
-FigSavedName = sprintf('%s_Station_positions_%s.fig',BasinName,PeriodYear);
-savefig(Fig_AllStations,fullfile(Map_of_stations, FigSavedName));
+    %Saving figures
+    FigSavedName = sprintf('%s_Station_positions_%s.fig',BasinName,PeriodYear);
+    savefig(Fig_AllStations,fullfile(Map_of_stations, FigSavedName));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LSM
@@ -429,7 +429,7 @@ end
         Mapping = struct('Scatter',MapScatter, 'Text', MapText);
  end
 
-%% --- Function to plot map with stations ---
+ %% --- Function to plot map with stations ---
 function PlotStationMap(PeriodYear, BasinName, ...
                         BasinColor, BasinLineWidth,ProcCenter,allStations)
 % Plot of figure showing all stations
@@ -464,7 +464,7 @@ function Matches = FindAndPlotMatches( ...
     nPC = numel(PCs); 
     assert(nPC == numel(PCNames), 'Mismatch in PC inputs')
     
-    % Find matches
+    % FIND MATCHES
     
     Matches = struct();
     for p = 1:nPC
@@ -521,7 +521,7 @@ function Matches = FindAndPlotMatches( ...
         return
     end
     
-    % Mapping
+    % MAPPING
     figMap = figure('Name', sprintf('%s – %d-way Match %s', ...
         strjoin(PCNames,' & '), nPC,PeriodYear));
     

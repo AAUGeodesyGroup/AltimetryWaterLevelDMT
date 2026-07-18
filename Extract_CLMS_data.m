@@ -111,7 +111,7 @@ load('Selected_CLMS_Stations.mat') % raw and unique CLMS data for this basin
 %% ### End of inputs ###
 
 % Since Selected_CLMS_Stations already contains those stations that are inside
-% the given basin, there is no need for using the function FilterStationsByBasin
+% the given basin, there is no need for using the function FilterDataByBasin
 Total_Number = length(Selected_CLMS_Stations);
 TotalNumberStation = sprintf('%d',Total_Number);
 

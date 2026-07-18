@@ -106,7 +106,8 @@ basinVectors = '.\BackgroundFiles\33_Main_world_basin_Vectors'; % shapefile cont
     'Remained Hydroweb stations in period %d-%d\n' ...
     '(requirement: under %d days gap and %.0f%% coverage)'], ...
     BasinName, startperiod, endperiod, MaxDays, TempCoveragePct);
-%% ### End of inputs ###
+
+    %% ### End of inputs ###
 
 %% ##########################################
 %% ### Filter of stations inside basin ###
@@ -160,7 +161,7 @@ for i=length(dir_list):-1:1
     Raw_Hydroweb_Stations(R).IdNumber = i;
 end
 
-Stations_inside_Hydroweb_Basin = FilterStationsByBasin( ...
+Stations_inside_Hydroweb_Basin = FilterDataByBasin( ...
     BasinName, Raw_Hydroweb_Stations, basinVectors);
 
 Total_Number = length(Stations_inside_Hydroweb_Basin);
@@ -247,6 +248,7 @@ SI = struct2table(Kept_stations);
 MyTable = [SI(:,1) SI(:,2) SI(:,3) SI(:,4) SI(:,9)];
 writetable(MyTable, fullfile(Place_of_CSVfiles, 'Hydroweb_Stations_MetaData.csv'));
 
+% Saving: Time, WaterLevel, WaterLevelUncertainty
 for i= 1:size(SI,1)
 Time = datetime(SI.Time{i,1});
 

@@ -153,7 +153,7 @@ for i=length(dir_list):-1:1
     Raw_Dahiti_Stations(R).IdNumber = i;
 end
 
-Stations_inside_Dahiti_Basin = FilterStationsByBasin( ...
+Stations_inside_Dahiti_Basin = FilterDataByBasin( ...
     BasinName, Raw_Dahiti_Stations, basinVectors);
 
 Total_Number = length(Stations_inside_Dahiti_Basin);

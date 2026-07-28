@@ -20,6 +20,7 @@ The following scripts in this tool are based on the following sources:
 - The script given in Download_Dahiti_data.py is based on the codes given by Christian Schwatke in the [Dahiti website](https://dahiti.dgfi.tum.de/en/api/doc/v2/download-water-level/)
 - The script given in Download_Hydroweb_data.py is using the python package [Py Hydroweb](https://pypi.org/project/py-hydroweb/)
 
+> :warning: The used datasets downloaded from websites should also be cited. Please read the [Wiki of this tool](https://github.com/AAUGeodesyGroup/AltimetryWaterLevelDMT/wiki) on GitHub to find information about how to cite the use of those datasets.
 
 ## Funding
 
@@ -50,6 +51,7 @@ The virtual stations from processing centres are handled in this tool as follows
   - Gives an overview of where virtual stations are located.
 - Geospatial and timeseries comparison
   - Triple match and double match to compare altimetry data from each virtual station
+  - Gwm lakes and HydroLAKES to compare the location to virtual stations
 
 
 [cc-by]: http://creativecommons.org/licenses/by/4.0/

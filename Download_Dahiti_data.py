@@ -88,7 +88,7 @@ if response.status_code == 200:
 
  
 
-    for target in targets[1:]:
+    for target in targets[:250]:
 
                
 

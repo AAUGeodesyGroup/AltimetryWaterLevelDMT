@@ -38,7 +38,7 @@ The **Altimetry Water Level Data Management Tool** is created to facilitate the 
 
 The use of the **Altimetry Water Level Data Management Tool** produces various results. A sample of results for Niger basin are presented in the image.
 
-![teaser](https://github.com/user-attachments/assets/809146a5-0406-47c3-9a10-972a9ff74429)
+<img width="564" height="432" alt="image" src="https://github.com/user-attachments/assets/14340381-d3a2-40ba-975f-67675130f8e3" />
 
 
 The virtual stations from processing centres are handled in this tool as follows:

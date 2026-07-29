@@ -2,8 +2,8 @@ clc
 clear
 close all
 
-% This file saves selected columns from a CSV file and saves the information into a
-% matlab file.
+% This file saves selected columns from a CSV file and saves the information into  as a
+% matlabfile.
 
 % Import CSV data
 data = readtable("wl-rivers_global_vector_daily_v2_geojson.csv");

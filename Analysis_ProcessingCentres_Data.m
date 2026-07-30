@@ -440,7 +440,7 @@ for s = 1:length(ProcCenter)
     % Extracting information about processing centers
     sourceName = ProcCenter{s};
     % Plotting stations from each processing center
-    FigPlot.(sourceName) = MapStations(allStations.(sourceName), sourceName);
+    MapStations(allStations.(sourceName), sourceName);
 end
 
 title(['Stations from ' PeriodYear])

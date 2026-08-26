@@ -8,7 +8,7 @@ basinVectors = '.\33_Main_world_basin_Vectors'; % shapefile contours
 
 BasinName = 'Niger'; % Name of the basin being worked on
 
-outputFolder = 'HydroRIVERS'; % Defining the folder, where the vec-files will be saved
+outputFolder = sprintf('%s_HydroRIVERS', BasinName);  % Defining the folder, where the vec-files will be saved
 
 % if the output folder do not exist, MATLAB will create it.
 if ~exist(outputFolder, 'dir')

@@ -18,6 +18,7 @@ Path_matFiles = '.\Saved_Matlab_Files'; % location of folder where the matlab fi
 FilePathName = '.\Saved_Matlab_Files\Niger_Extracted_Stations'; % location of folder to the matlab files
 gwmPathName ='.\Saved_Matlab_Files\Niger_GWM_Lakes'; % location of folder to the gwm lake matlab file
 HydroLakesPathName ='.\BackgroundFiles\HydroLAKES';
+HydroRiversPathName ='.\BackgroundFiles\HydroRIVERS';
 addpath '.\BackgroundFiles' 
 
 %% --- Change input in this section
@@ -335,7 +336,7 @@ end
 HydroLakesVec = dir(fullfile(HydroLakesPathName, '*.vec'));
 
 % Plotting HydroLAKES, basin and stations
-hydrolakesfigName = sprintf('Hydro lakes and stations from %s in %s basin', PeriodYear, BasinName);
+hydrolakesfigName = sprintf('HydroLAKES and stations from %s in %s basin', PeriodYear, BasinName);
 Fig_HydroLakesAllStations = figure('Name', hydrolakesfigName);
 geobasemap colorterrain
 hold on
@@ -346,22 +347,57 @@ for k = 1:length(HydroLakesVec)
     lakes = readmatrix(filename, 'FileType', 'text');
     Lon  = lakes(:,1);
     Lat = lakes(:,2);
-    h = plot(Lat, Lon, 'Color' ,'#00b3ff', 'LineWidth', 2);
+    h = plot(Lat, Lon, 'Color' ,'#406ED9', 'LineWidth', 2);
     h.Annotation.LegendInformation.IconDisplayStyle = 'off'; % turning individual legend information off 
 end
 
-% plot of stations and basin
+% Plot of stations and basin
 PlotStationMap(PeriodYear, BasinName, BasinColor, BasinLineWidth, ...
                 ProcCenter,allStations);
 
 % Adding a general legend for HydroLAKES
-plot(nan, nan, 'Color' ,'#00b3ff', 'LineWidth', 2, 'DisplayName','HydroLAKES');
+plot(nan, nan, 'Color' ,'#406ED9', 'LineWidth', 2, 'DisplayName','HydroLAKES');
 
 title(['Stations from ' PeriodYear ' and HydroLAKES'])
 
 % Saving map
 hydrolakes_map_fig = sprintf('%s_HydroLAKES_and_stations_%s.fig',BasinName,PeriodYear);
 savefig(Fig_HydroLakesAllStations,fullfile(Map_of_stations, hydrolakes_map_fig));
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HydroRIVERS
+
+% Reads vec files
+HydroRiversVec = dir(fullfile(HydroRiversPathName, '*.vec'));
+
+% Plotting HydroLAKES, basin and stations
+hydroriversfigName = sprintf('HydroRIVERS and stations from %s in %s basin', PeriodYear, BasinName);
+Fig_HydroRiversAllStations = figure('Name', hydroriversfigName);
+geobasemap colorterrain
+hold on
+
+% Plot of HydroRIVERS
+for k = 1:length(HydroRiversVec)
+    filename = fullfile(HydroRiversVec(k).folder, HydroRiversVec(k).name);
+    rivers = readmatrix(filename, 'FileType', 'text');
+    Lon  = rivers(:,1);
+    Lat = rivers(:,2);
+    h = plot(Lat, Lon, 'Color' ,'#00b3ff', 'LineWidth', 2);
+    h.Annotation.LegendInformation.IconDisplayStyle = 'off'; % turning individual legend information off 
+end
+
+% Plot of stations and basin
+PlotStationMap(PeriodYear, BasinName, BasinColor, BasinLineWidth, ...
+                ProcCenter,allStations);
+
+% Adding a general legend for HydroRIVERS
+plot(nan, nan, 'Color' ,'#00b3ff', 'LineWidth', 2, 'DisplayName','HydroRIVERS');
+
+title(['Stations from ' PeriodYear ' and HydroRIVERS'])
+
+% Saving map
+hydrorivers_map_fig = sprintf('%s_HydroRIVERS_and_stations_%s.fig',BasinName,PeriodYear);
+savefig(Fig_HydroRiversAllStations,fullfile(Map_of_stations, hydrorivers_map_fig));
 
 %%%%%%%%%%%%%%%%%%%%%
 %%%  Functions    %%%

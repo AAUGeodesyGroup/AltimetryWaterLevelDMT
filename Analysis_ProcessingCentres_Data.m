@@ -7,7 +7,7 @@
 % double match.
 % 4) A map that shows the location of gwm lakes and filtered processing
 % centers inside a chosen basin and timeseries of gwm lakes.
-% 5) A map showing location of HydroLAKES.
+% 5) A map showing location of HydroLAKES and HydroRIVERS.
 
 clc
 clear
@@ -17,8 +17,8 @@ Path_figures = '.\Saved_Figures'; % location of folder where the figures would b
 Path_matFiles = '.\Saved_Matlab_Files'; % location of folder where the matlab files would be saved
 FilePathName = '.\Saved_Matlab_Files\Niger_Extracted_Stations'; % location of folder to the matlab files
 gwmPathName ='.\Saved_Matlab_Files\Niger_GWM_Lakes'; % location of folder to the gwm lake matlab file
-HydroLakesPathName ='.\BackgroundFiles\HydroLAKES';
-HydroRiversPathName ='.\BackgroundFiles\HydroRIVERS';
+HydroLakesPathName ='.\BackgroundFiles\Niger_HydroLAKES';
+HydroRiversPathName ='.\BackgroundFiles\Niger_HydroRIVERS';
 addpath '.\BackgroundFiles' 
 
 %% --- Change input in this section

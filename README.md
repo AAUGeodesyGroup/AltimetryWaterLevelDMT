@@ -51,7 +51,7 @@ The virtual stations from processing centres are handled in this tool as follows
   - Gives an overview of where virtual stations are located.
 - Geospatial and timeseries comparison
   - Triple match and double match to compare altimetry data from each virtual station
-  - Gwm lakes and HydroLAKES to compare the location to virtual stations
+  - Gwm lakes, HydroLAKES and HydroRIVERS to compare the location to virtual stations
 
 
 [cc-by]: http://creativecommons.org/licenses/by/4.0/

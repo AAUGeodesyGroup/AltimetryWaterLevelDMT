@@ -27,7 +27,7 @@ The following scripts in this tool are based on the following sources:
 We acknowledge the support of the Independent Research Fund Denmark (DFF) through the DFF1-Green thematic research project entitled “Space-based Free Flood Awareness System for Africa (SFAS),” Grant No. 10.46540/4307-00146B
 
 ## Description
-The **Altimetry Water Level Data Management Tool** is created to facilitate the easy downloading, filtering, mapping, and plotting of river altimetry data from the processing centres CLMS, Dahiti, and Hydroweb.
+The **Altimetry Water Level Data Management Tool** is created to facilitate the easy downloading, filtering, mapping, and plotting of altimetry data from the processing centres CLMS, Dahiti, and Hydroweb.
 
 **This tool is capable of downloading and processing the following data from the processing centres:**
 - CLMS: [River Water Level 2002-present (vector), global, Near Real Time – version 2](https://land.copernicus.eu/en/products/water-bodies/water-level-rivers-near-real-time-v2.0#download)
